@@ -1,11 +1,13 @@
 <?php
-$filename = 'memos.txt';
+$filename = 'memos.csv';
 
+//POST情報をcsv書き込み
 if($_SERVER['REQUEST_METHOD']==='POST' && !empty($_POST['memo'])){
   $memo = trim($_POST['memo']);
   $datetime = (date('Y-m-d H:i:s'));
-  $line ="[$datetime] $memo";
-  file_put_contents($filename, $line . PHP_EOL, FILE_APPEND);
+  $fp = fopen($filename, 'a');
+  fputcsv($fp, [$memo, $datetime]);
+  fclose($fp);
 }
 ?>
 
@@ -25,11 +27,23 @@ if($_SERVER['REQUEST_METHOD']==='POST' && !empty($_POST['memo'])){
     </form>
 
     <?php
-    $memos = file_exists($filename) ? file($filename, FILE_IGNORE_NEW_LINES) : [];
+    $memos = [];
+    //csv情報を読み込み
+    if(file_exists($filename)){
+      $fp = fopen($filename, 'r');
+      while(($data = fgetcsv($fp)) !== false){
+        $memos[] = $data;
+      }
+      fclose($fp);
+    };
     ?>
     <ul>
-      <?php foreach ($memos as $line): ?>
-        <li><?= htmlspecialchars($line, ENT_QUOTES, 'UTF-8') ?></li>
+      <?php foreach ($memos as $entry): ?>
+        <li>
+          <?= htmlspecialchars($entry[1], ENT_QUOTES, 'UTF-8') ?>
+          :
+          <?= htmlspecialchars($entry[0], ENT_QUOTES, 'UTF-8') ?>
+      </li>
       <?php endforeach; ?>
     </ul>
   </body>
