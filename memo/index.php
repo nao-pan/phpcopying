@@ -4,10 +4,23 @@ session_start();
 $stmt = $pdo->query("select * from memos ORDER BY created_at DESC");
 $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$showToast = false;
+$showDeleteToast = false;
+$showUpdateToast = false;
+$showCreateToast = false;
+
 if (!empty($_SESSION['delete_success'])) {
-  $showToast = true;
+  $showDeleteToast = true;
   unset($_SESSION['delete_success']);
+}
+
+if (!empty($_SESSION['update_success'])) {
+  $showUpdateToast = true;
+  unset($_SESSION['update_success']);
+}
+
+if (!empty($_SESSION['create_success'])) {
+  $showCreateToast = true;
+  unset($_SESSION['create_success']);
 }
 
 ?>
@@ -79,6 +92,27 @@ if (!empty($_SESSION['delete_success'])) {
             </div>
           </div>
         </div>
+        <!-- 更新成功トースト -->
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+          <div id="updateToast" class="toast align-items-center text-white bg-primary border-0" role="alert">
+            <div class="d-flex">
+              <div class="toast-body">
+                ✅ メモを更新しました。
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+          </div>
+        </div>
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+          <div id="createToast" class="toast align-items-center text-white bg-primary border-0" role="alert">
+            <div class="d-flex">
+              <div class="toast-body">
+                ✅ メモを追加しました。
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -95,10 +129,21 @@ if (!empty($_SESSION['delete_success'])) {
       });
 
       //削除成功トースト処理
-      <?php if ($showToast): ?>
-        const deleteToast = document.getElementById('deleteToast');
-        const toast = new bootstrap.Toast(deleteToast);
-        toast.show();
+      <?php if ($showDeleteToast): ?>
+        const deleteToast = new bootstrap.Toast(document.getElementById('deleteToast'));
+        deleteToast.show();
+      <?php endif; ?>
+
+      //更新成功トースト処理
+      <?php if ($showUpdateToast): ?>
+        const updateToast = new bootstrap.Toast(document.getElementById('updateToast'));
+        updateToast.show();
+      <?php endif; ?>
+
+      //追加成功トースト処理
+      <?php if ($showCreateToast): ?>
+        const createToast = new bootstrap.Toast(document.getElementById('createToast'));
+        createToast.show();
       <?php endif; ?>
     });
   </script>

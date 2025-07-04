@@ -1,6 +1,6 @@
 <?php
 require 'db.php';
-
+session_start();
 //フォームの値を受け取る
 $content = trim($_POST['content'] ?? '');
 
@@ -15,6 +15,9 @@ $sql = "insert into memos (content) values (:content)";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':content', $content, PDO::PARAM_STR);
 $stmt->execute();
+
+//セッションに成功フラグを立てる
+$_SESSION['create_success'] = true;
 
 //一覧ページにリダイレクト
 header('Location: index.php');
