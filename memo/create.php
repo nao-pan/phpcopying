@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>メモ作成</title>
 </head>
+
 <body>
   <h1>新規メモ作成</h1>
   <form action="store.php" method="post">
@@ -13,4 +15,5 @@
   </form>
   <a href="index.php">メモ一覧に戻る</a>
 </body>
+
 </html>
