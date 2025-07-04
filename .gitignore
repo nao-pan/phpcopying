@@ -1,0 +1,42 @@
+# --- PHP関連 ---
+*.log
+*.cache
+*.lock
+*.bak
+*.tmp
+
+# --- OSやエディタの一時ファイル ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+*.~*
+
+# --- XAMPP / ローカル開発でよくあるもの ---
+*.sqlite
+*.csv
+*.db
+*.env
+.env.*
+
+# --- Composer 関連 ---
+/vendor/
+/composer.phar
+
+# --- Laravel 固有 ---
+/storage/*
+!/storage/app/
+/bootstrap/cache/
+
+# --- IDEやエディタ ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- node/npm 関連（将来使う可能性あり）---
+/node_modules/
+/public/hot
+/public/storage
+/storage/framework/cache/data
+"memos.csv" 
