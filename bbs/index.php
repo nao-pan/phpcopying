@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/Posts.php';
 
-$stmt = $pdo->query("select * from posts order by created_at desc");
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$posts = Posts::all($pdo);
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +16,6 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <div class="container mt-4">
     <h1 class="mb-4">掲示板</h1>
-
-    <a href="post.php" class="btn btn-primary mb-3">＋新規投稿</a>
-
     <?php if(count($posts) === 0): ?>
       <p>投稿はまだありません。</p>
     <?php else: ?>
@@ -31,5 +28,17 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?endforeach; ?>
     <?php endif; ?>
   </div>
+  <hr>
+  <form action="regist.php" method="post" class="mb-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">名前</label>
+      <input type="text" name="name" id= "name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="comment" class="form-label">コメント</label>
+      <textarea name="comment" id= "comment" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">投稿する</button>
+  </form>
 </body>
 </html>
