@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../db.php';
-require_once __DIR__ . '/Posts.php';
+require_once __DIR__ . '/classes/Posts.php';
 
 $posts = Posts::all($pdo);
 ?>
@@ -21,11 +21,11 @@ $posts = Posts::all($pdo);
     <?php else: ?>
       <?php foreach($posts as $post): ?>
         <div class="border rounded p-3 mb-3">
-          <h5><?= htmlspecialchars($post['name'])?></h5>
-          <p><?= nl2br(htmlspecialchars($post['comment']))?></p>
-          <small class="text-muted">投稿日：<?= $post['created_at']?></small>
+          <h5><?= htmlspecialchars($post->name)?></h5>
+          <p><?= nl2br(htmlspecialchars($post->comment))?></p>
+          <small class="text-muted">投稿日：<?= $post->created_at ?></small>
         </div>
-      <?endforeach; ?>
+      <?php endforeach; ?>
     <?php endif; ?>
   </div>
   <hr>
@@ -36,7 +36,7 @@ $posts = Posts::all($pdo);
     </div>
     <div class="mb-3">
       <label for="comment" class="form-label">コメント</label>
-      <textarea name="comment" id= "comment" class="form-control" required>
+      <textarea name="comment" id= "comment" class="form-control" required></textarea>
     </div>
     <button type="submit" class="btn btn-primary">投稿する</button>
   </form>
