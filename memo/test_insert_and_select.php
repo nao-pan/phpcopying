@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require_once __DIR__ . '/../db.php';
 
 //テスト用メモの追加
 $pdo->prepare("insert into memos (content) values (:content)")

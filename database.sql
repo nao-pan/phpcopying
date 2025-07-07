@@ -8,3 +8,10 @@ create table memos(
   created_at datetime default current_timestamp,
   updated_at datetime default current_timestamp on update current_timestamp
   );
+
+  CREATE TABLE posts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  comment TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

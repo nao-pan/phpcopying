@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require_once __DIR__ . '/../db.php';
 session_start();
 //フォームの値を受け取る
 $id = (int)($_POST['id'] ?? 0);

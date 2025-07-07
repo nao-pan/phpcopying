@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require_once __DIR__ . '/../db.php';
 session_start();
 //IDを安全に取得
 $id = (int)($_GET['id'] ?? 0);

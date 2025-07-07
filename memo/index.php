@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require_once __DIR__ . '/../db.php';
 session_start();
 $stmt = $pdo->query("select * from memos ORDER BY created_at DESC");
 $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);

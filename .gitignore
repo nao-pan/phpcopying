@@ -4,6 +4,8 @@
 *.lock
 *.bak
 *.tmp
+db.php
+
 
 # --- OSやエディタの一時ファイル ---
 .DS_Store

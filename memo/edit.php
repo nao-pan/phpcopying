@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require_once __DIR__ . '/../db.php';
 
 //IDを取得　?? ←NULL合体演算子という　nullなら0にという意味
 $id = (int)($_GET['id'] ?? 0);
