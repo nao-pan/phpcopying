@@ -1,8 +1,12 @@
 <?php
+session_start();
 require_once __DIR__ . '/../db.php';
 require_once __DIR__ . '/classes/Posts.php';
 
-$posts = Posts::all($pdo);
+$posts = Posts::getAll($pdo);
+
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']);
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +25,13 @@ $posts = Posts::all($pdo);
     <?php if (count($posts) === 0): ?>
       <p>投稿はまだありません。</p>
     <?php else: ?>
+    <?php if (!empty($errors)): ?>
+      <div style="color: red">
+        <?php foreach($errors as $error): ?>
+          <p><?= htmlspecialchars($error) ?></p>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
       <?php foreach ($posts as $post): ?>
         <div class="border rounded p-3 mb-3">
           <h5><?= htmlspecialchars($post->name) ?></h5>
@@ -29,7 +40,7 @@ $posts = Posts::all($pdo);
         </div>
       <?php endforeach; ?>
     <?php endif; ?>
-  </div>
+  
   <hr>
   <form action="regist.php" method="post" class="mb-4">
     <div class="mb-3">
@@ -42,6 +53,7 @@ $posts = Posts::all($pdo);
     </div>
     <button type="submit" class="btn btn-primary">投稿する</button>
   </form>
+  </div>
 </body>
 
 </html>

@@ -16,7 +16,7 @@ class Posts
   }
 
   //静的メソッド：全件取得
-  public static function all(PDO $pdo): array
+  public static function getAll(PDO $pdo): array
   {
     $stmt = $pdo->query("select * from posts order by created_at desc");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

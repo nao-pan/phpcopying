@@ -27,7 +27,7 @@
             <a class="text-gray-600 hover:text-gray-800" href="memo/index.php">メモ帳アプリ</a>
           </li>
           <li class="lg:w-1/3 mb-1 w-1/2">
-            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+            <a class="text-gray-600 hover:text-gray-800" href="bbs\index.php">掲示板アプリ</a>
           </li>
           <li class="lg:w-1/3 mb-1 w-1/2">
             <a class="text-gray-600 hover:text-gray-800">Third Link</a>
