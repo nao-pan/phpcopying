@@ -18,12 +18,12 @@ if ($validator->hasErrors()) {
   exit;
 }
 
-$post = new Posts([
+$post = new Posts($pdo,[
   'name' => $name,
   'comment' => $comment
 ]);
 
-if ($post->save($pdo)) {
+if ($post->save()) {
   header('Location: index.php');
   exit;
 } else {

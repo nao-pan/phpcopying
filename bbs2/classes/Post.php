@@ -1,6 +1,6 @@
 <?php
 
-class Threads
+class Post
 {
   public int $id;
   public string $name;

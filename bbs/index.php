@@ -3,7 +3,8 @@ session_start();
 require_once __DIR__ . '/../db.php';
 require_once __DIR__ . '/classes/Posts.php';
 
-$posts = Posts::getAll($pdo);
+$postsModel = new Posts($pdo);
+$posts = $postsModel->getAll();
 
 $errors = $_SESSION['errors'] ?? [];
 unset($_SESSION['errors']);
