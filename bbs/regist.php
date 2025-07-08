@@ -13,9 +13,9 @@ $comment = trim($_POST['comment'] ?? '');
 $validator = new Validator();
 $validator->validateAll($_POST);
 if ($validator->hasErrors()) {
-    $_SESSION['errors'] = $validator->getErrors();
-    header('Location: index.php');
-    exit;
+  $_SESSION['errors'] = $validator->getErrors();
+  header('Location: index.php');
+  exit;
 }
 
 $post = new Posts([
@@ -23,10 +23,9 @@ $post = new Posts([
   'comment' => $comment
 ]);
 
-if($post->save($pdo)){
+if ($post->save($pdo)) {
   header('Location: index.php');
   exit;
-}else{
+} else {
   echo '保存に失敗しました。<a href="index.php">戻る</a>';
 }
-?>

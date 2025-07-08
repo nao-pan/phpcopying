@@ -11,7 +11,7 @@ class Posts
   {
     $this->id = $data['id'] ?? 0;
     $this->name = $data['name'] ?? '';
-    $this->comment =$data['comment'] ?? '';
+    $this->comment = $data['comment'] ?? '';
     $this->created_at = $data['created_at'] ?? '';
   }
 
@@ -20,7 +20,7 @@ class Posts
   {
     $stmt = $pdo->query("select * from posts order by created_at desc");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return array_map(fn($row) => new Posts($row),$results);
+    return array_map(fn($row) => new Posts($row), $results);
   }
 
   //投稿の保存メソッド
@@ -29,6 +29,7 @@ class Posts
     $stmt = $pdo->prepare("insert into posts(name,comment) values(:name,:comment)");
     return $stmt->execute([
       'name' => $this->name,
-      'comment' => $this->comment]);
+      'comment' => $this->comment
+    ]);
   }
 }

@@ -7,9 +7,9 @@ class Validator
 
   public function __construct(string $forbiddenWordsPath = __DIR__ . '/../common/forbidden_words.php')
   {
-    if(file_exists($forbiddenWordsPath)){
+    if (file_exists($forbiddenWordsPath)) {
       $this->forbiddenWords = require $forbiddenWordsPath;
-    }else{
+    } else {
       $this->forbiddenWords = []; //ファイルが見つからない場合空に
     }
   }
@@ -17,7 +17,7 @@ class Validator
   //文字列の必須チェック
   public function reqired(string $value, string $fieldName): void
   {
-    if(trim($value) === ''){
+    if (trim($value) === '') {
       $this->errors[] = "{$fieldName}は必須項目です。";
     }
   }
@@ -25,7 +25,7 @@ class Validator
   //最大文字数チェック
   public function maxLength(string $value, int $max, string $fieldName): void
   {
-    if(mb_strlen($value) > $max){
+    if (mb_strlen($value) > $max) {
       $this->errors[] = "{$fieldName}は{$max}文字以内で入力してください。";
     }
   }
@@ -33,8 +33,8 @@ class Validator
   //禁止語チェック
   public function containsForbiddenWords(string $value, string $fieldName): void
   {
-    foreach($this->forbiddenWords as $word) {
-      if(mb_strpos($value, $word) !== false){
+    foreach ($this->forbiddenWords as $word) {
+      if (mb_strpos($value, $word) !== false) {
         $this->errors[] = "{$fieldName}に禁止語「{$word}」が含まれています。";
       }
     }
@@ -51,8 +51,8 @@ class Validator
     $this->maxLength($data['comment'] ?? '', 200, 'コメント');
 
     //禁止語チェック
-    if(!empty($forbiddenWords)){
-      $this->containsForbiddenWords($data['name'] ?? '', '名前', );
+    if (!empty($this->forbiddenWords)) {
+      $this->containsForbiddenWords($data['name'] ?? '', '名前',);
       $this->containsForbiddenWords($data['comment'] ?? '', 'コメント');
     }
   }

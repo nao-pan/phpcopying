@@ -6,7 +6,7 @@ $content = trim($_POST['content'] ?? '');
 
 //空チェック
 if ($content === '') {
-  echo 'メモの内容が空です。<a href="create.php>戻る</a>"';
+  echo 'メモの内容が空です。<a href="create.php">戻る</a>';
   exit;
 }
 
