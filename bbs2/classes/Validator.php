@@ -5,8 +5,9 @@ class Validator
   private array $errors = [];
   private array $forbiddenWords;
 
-  public function __construct(string $forbiddenWordsPath = __DIR__ . '/../common/forbidden_words.php')
+  public function __construct()
   {
+    $forbiddenWordsPath = __DIR__ . '/../common/forbidden_words.php';
     if (file_exists($forbiddenWordsPath)) {
       $this->forbiddenWords = require $forbiddenWordsPath;
     } else {
@@ -54,6 +55,20 @@ class Validator
     if (!empty($this->forbiddenWords)) {
       $this->containsForbiddenWords($data['name'] ?? '', '名前');
       $this->containsForbiddenWords($data['comment'] ?? '', 'コメント');
+    }
+  }
+
+  public function validateThreadTitle($title): void
+  {
+    //必須入力チェック
+    $this->reqired($title ?? '', 'タイトル');
+
+    //最大文字数チェック
+    $this->maxLength($title ?? '', 20, 'タイトル');
+
+    //禁止語チェック
+    if (!empty($this->forbiddenWords)) {
+      $this->containsForbiddenWords($title ?? '', 'タイトル');
     }
   }
 
