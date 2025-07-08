@@ -52,7 +52,7 @@ class Validator
 
     //禁止語チェック
     if (!empty($this->forbiddenWords)) {
-      $this->containsForbiddenWords($data['name'] ?? '', '名前',);
+      $this->containsForbiddenWords($data['name'] ?? '', '名前');
       $this->containsForbiddenWords($data['comment'] ?? '', 'コメント');
     }
   }
