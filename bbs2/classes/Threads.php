@@ -12,7 +12,7 @@ class Threads
   //スレッドの全件取得
   public function getAll()
   {
-    $stmt = $this->pdo->query("select * threads posts order by created_at desc");
+    $stmt = $this->pdo->query("select * from threads order by created_at desc");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -30,5 +30,12 @@ class Threads
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  //
+  public function isExist($id) {
+    $stmt = $this->pdo->prepare("SELECT * FROM threads WHERE id = :id");
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
   }
 }

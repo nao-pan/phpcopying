@@ -16,7 +16,7 @@ class Validator
   }
 
   //文字列の必須チェック
-  public function reqired(string $value, string $fieldName): void
+  public function required(string $value, string $fieldName): void
   {
     if (trim($value) === '') {
       $this->errors[] = "{$fieldName}は必須項目です。";
@@ -41,20 +41,20 @@ class Validator
     }
   }
 
-  public function validateAll(array $data): void
+  public function validatePost(array $data): void
   {
     //必須入力チェック
-    $this->reqired($data['name'] ?? '', '名前');
-    $this->reqired($data['comment'] ?? '', 'コメント');
+    $this->required($data['name'] ?? '', '名前');
+    $this->required($data['body'] ?? '', '投稿内容');
 
     //最大文字数チェック
     $this->maxLength($data['name'] ?? '', 20, '名前');
-    $this->maxLength($data['comment'] ?? '', 200, 'コメント');
+    $this->maxLength($data['body'] ?? '', 200, '投稿内容');
 
     //禁止語チェック
     if (!empty($this->forbiddenWords)) {
       $this->containsForbiddenWords($data['name'] ?? '', '名前');
-      $this->containsForbiddenWords($data['comment'] ?? '', 'コメント');
+      $this->containsForbiddenWords($data['body'] ?? '', '投稿内容');
     }
   }
 

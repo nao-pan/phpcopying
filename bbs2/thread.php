@@ -9,7 +9,7 @@ $threadId = (int)($_GET['id'] ?? 0);
 $threads = new Threads($pdo);
 $thread = $threads->findById($threadId);
 
-if (!$thread) {
+if (!isset($thread)) {
   echo 'スレッドが見つかりません。';
   exit;
 }

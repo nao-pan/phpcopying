@@ -22,10 +22,10 @@ $allThreads = $threads->getAll();
   <div class="container my-5">
     <h1>スレッド一覧</h1>
 
-    <ur class="list-group">
+    <ul class="list-group">
       <?php foreach ($allThreads as $thread): ?>
         <li class="list-group-item">
-          <a href="thread.php?id=<? $thread['id'] ?>">
+          <a href="thread.php?id=<?= $thread['id'] ?>">
             <?= htmlspecialchars($thread['title']) ?>
           </a>
           <br>
@@ -33,6 +33,8 @@ $allThreads = $threads->getAll();
       </li>
       <?php endforeach; ?>
     </ur>
+
+    <a href="create_thread.php">新規スレッド作成</a>
 </body>
 
 </html>

@@ -42,3 +42,19 @@ Thumbs.db
 /public/storage
 /storage/framework/cache/data
 "memos.csv" 
+
+# PHPUnit のキャッシュ
+.phpunit.cache/
+
+# PHPUnit のカバレッジ出力（任意）
+/coverage/
+
+# OS・エディタ系
+.DS_Store
+Thumbs.db
+
+# VSCode設定（任意で共有したくない場合）
+.vscode/
+
+# ローカル環境設定ファイル（XAMPP設定など）
+*.local.php

@@ -12,7 +12,7 @@ class ThreadPosts
   //ID選択されたスレッドの投稿取得
   public function getByThreadId(int $threadId): array
   {
-    $stmt = $this->pdo->prepare("select * from threads_posts where thread_id = :id order by created_at asc");
+    $stmt = $this->pdo->prepare("select * from thread_posts where thread_id = :id order by created_at asc");
     $stmt->bindvalue(':id', $threadId, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
