@@ -5,14 +5,19 @@ class Validator
   private array $errors = [];
   private array $forbiddenWords;
 
-  public function __construct()
+  public function __construct(array $forbiddenWords)
   {
-    $forbiddenWordsPath = __DIR__ . '/../common/forbidden_words.php';
-    if (file_exists($forbiddenWordsPath)) {
-      $this->forbiddenWords = require $forbiddenWordsPath;
-    } else {
-      $this->forbiddenWords = []; //ファイルが見つからない場合空に
-    }
+    $this->forbiddenWords = $forbiddenWords;
+
+    // 以下の設計（引数なしで読み込みしセット）を行っていたが、禁止語配列をここで読み込みセットするのは設計上問題あり
+    // テストがしにくい上に、このクラスが呼ばれる度に読み込むことになる。
+
+    // $forbiddenWordsPath = __DIR__ . '/../common/forbidden_words.php';
+    // if (file_exists($forbiddenWordsPath)) {
+    //   $this->forbiddenWords = require $forbiddenWordsPath;
+    // } else {
+    //   $this->forbiddenWords = []; //ファイルが見つからない場合空に
+    // }
   }
 
   //文字列の必須チェック
@@ -61,7 +66,7 @@ class Validator
   public function validateThreadTitle($title): void
   {
     //必須入力チェック
-    $this->reqired($title ?? '', 'タイトル');
+    $this->required($title ?? '', 'タイトル');
 
     //最大文字数チェック
     $this->maxLength($title ?? '', 20, 'タイトル');
