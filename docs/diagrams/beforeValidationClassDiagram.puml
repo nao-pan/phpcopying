@@ -1,0 +1,23 @@
+@startuml beforeValidationClassDiagram
+skinparam ClassAttributeIconSize 0
+title デザインパターン導入前
+class Client
+
+class Validator{
+  -errors
+  -forbiddenWords
+  --
+  +__construct(array: forbiddenWords)
+  +required(string: data)
+  +maxLength(string: data)
+  +containsForbiddenWords(string: data)
+  +getErrors():array
+  +hasErrors():bool
+  +validateThread(string: title)
+  +validatePost(array: data)
+}
+
+Client-->Validator: use
+
+
+@enduml

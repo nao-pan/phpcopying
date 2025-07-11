@@ -1,0 +1,49 @@
+@startuml beforeValidationClassDiagram
+skinparam ClassAttributeIconSize 0
+title バリデーションクラス群
+class Client
+
+class ValidatorFactory{
+  {static}+create(string: type):BaseValidation
+}
+
+abstract class BaseValidator{
+  -errors
+  -forbiddenWords
+  --
+  +__construct(array: forbiddenWords)
+  +validate(array|string: $data)
+  {abstract}#checkRequired(array|string $data)
+  {abstract}#checkMaxLength(array|string $data)
+  {abstract}#checkForbiddenWords(array|string $data)
+  +required(string: data)
+  +maxLength(string: data)
+  +containsForbiddenWords(string: data)
+  +getErrors():array
+  +hasErrors():bool
+}
+
+class PostValidator{
+  #checkRequired(array|string: data)
+  #checkMaxLength(array|string: data)
+  #checkForbiddenWords(array|string: data)
+}
+
+class ThreadValidator{
+  #checkRequired(array|string: data)
+  #checkMaxLength(array|string: data)
+  #checkForbiddenWords(array|string: data)
+}
+
+class ForbiddenWordsLoader{
+  {static}+load():array
+}
+Client-->ValidatorFactory: use
+ValidatorFactory-->ThreadValidator:create
+ValidatorFactory-->PostValidator:create
+BaseValidator<|--ThreadValidator
+BaseValidator<|--PostValidator
+ValidatorFactory-->ForbiddenWordsLoader:use
+
+
+@enduml
