@@ -18,7 +18,7 @@ if ($validator->hasErrors()) {
   exit;
 }
 
-$post = new Posts($pdo,[
+$post = new Posts($pdo, [
   'name' => $name,
   'comment' => $comment
 ]);

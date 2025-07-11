@@ -25,7 +25,8 @@ class Threads
   }
 
   //ID検索
-  public function findById($id) {
+  public function findById($id)
+  {
     $stmt = $this->pdo->prepare("SELECT * FROM threads WHERE id = :id");
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
@@ -33,7 +34,8 @@ class Threads
   }
 
   //
-  public function isExist($id) {
+  public function isExist($id)
+  {
     $stmt = $this->pdo->prepare("SELECT * FROM threads WHERE id = :id");
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     return $stmt->execute();

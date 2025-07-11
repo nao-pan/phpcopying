@@ -8,10 +8,10 @@ class Posts
   public string $comment = '';
   public string $created_at = '';
 
-  public function __construct(PDO $pdo,array $data = [])
+  public function __construct(PDO $pdo, array $data = [])
   {
     $this->pdo = $pdo;
-    if(!empty($data)){
+    if (!empty($data)) {
       $this->id = $data['id'] ?? 0;
       $this->name = $data['name'] ?? '';
       $this->comment = $data['comment'] ?? '';
@@ -24,7 +24,7 @@ class Posts
   {
     $stmt = $this->pdo->query("select * from posts order by created_at desc");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return array_map(fn($row) => new self($this->pdo,$row), $results);
+    return array_map(fn($row) => new self($this->pdo, $row), $results);
   }
 
   //投稿の保存メソッド

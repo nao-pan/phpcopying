@@ -22,4 +22,3 @@ $threads->create($title);
 
 header('Location: index.php');
 exit;
-?>

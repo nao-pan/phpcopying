@@ -19,7 +19,7 @@ class ThreadPosts
   }
 
   //投稿の保存メソッド
-  public function save(int $threadId,string $name, string $body): bool
+  public function save(int $threadId, string $name, string $body): bool
   {
     $stmt = $this->pdo->prepare("insert into thread_posts(thread_id, name, body) values(:thread_id, :name, :body)");
     return $stmt->execute([
@@ -28,5 +28,4 @@ class ThreadPosts
       'body' => $body
     ]);
   }
-
 }

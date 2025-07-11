@@ -30,11 +30,11 @@ $allThreads = $threads->getAll();
           </a>
           <br>
           <small>作成日時：<?= $thread['created_at'] ?></small>
-      </li>
+        </li>
       <?php endforeach; ?>
-    </ur>
+      </ur>
 
-    <a href="create_thread.php">新規スレッド作成</a>
+      <a href="create_thread.php">新規スレッド作成</a>
 </body>
 
 </html>

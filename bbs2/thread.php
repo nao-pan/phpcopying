@@ -21,11 +21,13 @@ unset($_SESSION['errors']);
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($thread['title']) ?> - スレッド</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
+
 <body class="container my-5" style="max-width: 800px;">
   <h1><?= htmlspecialchars($thread['title']) ?></h1>
 
@@ -60,4 +62,5 @@ unset($_SESSION['errors']);
     <a href="index.php" class="btn btn-secondary ms-2">スレッド一覧へ戻る</a>
   </form>
 </body>
+
 </html>

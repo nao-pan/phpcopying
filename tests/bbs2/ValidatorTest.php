@@ -25,7 +25,7 @@ class ValidatorTest extends TestCase
     $this->assertContains('名前は必須項目です。', $this->validator->getErrors());
   }
 
-    /**
+  /**
    * @covers Validator::required
    */
   public function test_required_adds_error_when_value_is_only_spaces()
@@ -42,7 +42,7 @@ class ValidatorTest extends TestCase
   {
     $this->validator->required('田中太郎', '名前');
     $this->assertFalse($this->validator->hasErrors());
-        $this->assertEmpty($this->validator->getErrors());
+    $this->assertEmpty($this->validator->getErrors());
   }
 
   /**
@@ -52,7 +52,7 @@ class ValidatorTest extends TestCase
   {
     $this->validator->maxLength('abcd', 4, '名前');
     $this->assertFalse($this->validator->hasErrors());
-        $this->assertEmpty($this->validator->getErrors());
+    $this->assertEmpty($this->validator->getErrors());
   }
 
   /**
@@ -75,7 +75,7 @@ class ValidatorTest extends TestCase
     $this->assertContains('名前に禁止語「禁止語1」が含まれています。', $this->validator->getErrors());
   }
 
-    /**
+  /**
    * @covers Validator::containsForbiddenWords
    */
   public function test_containsForbiddenWords_add_errors_when_text_contains_two_forbidden_words()
@@ -86,7 +86,7 @@ class ValidatorTest extends TestCase
     $this->assertContains('名前に禁止語「禁止語2」が含まれています。', $this->validator->getErrors());
   }
 
-      /**
+  /**
    * @covers Validator::containsForbiddenWords
    */
   public function test_containsForbiddenWords_passes_when_text_has_no_match()
