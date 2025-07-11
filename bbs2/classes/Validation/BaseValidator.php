@@ -1,18 +1,29 @@
 <?php
 
-class Validator
+namespace Pcopy\Bbs2\Validation;
+
+abstract class BaseValidator
 {
   private array $errors = [];
   private array $forbiddenWords;
 
-  public function __construct(string $forbiddenWordsPath = __DIR__ . '/../common/forbidden_words.php')
+  public function __construct(array $forbiddenWords)
   {
-    if (file_exists($forbiddenWordsPath)) {
-      $this->forbiddenWords = require $forbiddenWordsPath;
-    } else {
-      $this->forbiddenWords = []; //ファイルが見つからない場合空に
-    }
+    $this->forbiddenWords = $forbiddenWords;
   }
+
+  //テンプレートメソッド
+  public function validate(array|string $data): void
+  {
+    $this->checkRequired($data);
+    $this->checkMaxLength($data);
+    $this->checkForbiddenWords($data);
+  }
+
+  //サブクラスごとに実装
+  abstract protected function checkRequired(array|string $data): void;
+  abstract protected function checkMaxLength(array|string $data): void;
+  abstract protected function checkForbiddenWords(array|string $data): void;
 
   //文字列の必須チェック
   public function required(string $value, string $fieldName): void
@@ -40,22 +51,6 @@ class Validator
     }
   }
 
-  public function validateAll(array $data): void
-  {
-    //必須入力チェック
-    $this->required($data['name'] ?? '', '名前');
-    $this->required($data['comment'] ?? '', 'コメント');
-
-    //最大文字数チェック
-    $this->maxLength($data['name'] ?? '', 20, '名前');
-    $this->maxLength($data['comment'] ?? '', 200, 'コメント');
-
-    //禁止語チェック
-    if (!empty($this->forbiddenWords)) {
-      $this->containsForbiddenWords($data['name'] ?? '', '名前');
-      $this->containsForbiddenWords($data['comment'] ?? '', 'コメント');
-    }
-  }
 
   //エラーメッセージの取得
   public function getErrors(): array

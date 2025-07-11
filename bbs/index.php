@@ -43,7 +43,7 @@ unset($_SESSION['errors']);
     <?php endif; ?>
 
     <hr>
-    <form action="regist.php" method="post" class="mb-4">
+    <form action="store.php" method="post" class="mb-4">
       <div class="mb-3">
         <label for="name" class="form-label">名前</label>
         <input type="text" name="name" id="name" class="form-control" required>

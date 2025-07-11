@@ -1,15 +1,17 @@
 <?php
 session_start();
 require_once(__DIR__ . '/../db.php');
-require_once(__DIR__ . '/classes/Threads.php');
-require_once(__DIR__ . '/classes/Validator.php');
+require_once(__DIR__ . '/Classes/Threads.php');
+
+use Pcopy\Bbs2\Validation\ValidatorFactory;
+
 
 $title = $_POST['title'] ?? '';
 $title = trim($title);
 
 $errors = [];
-$validator = new Validator();
-$validator->validateThreadTitle($title);
+$validator = ValidatorFactory::create('thread');
+$validator->validate($title);
 
 if ($validator->hasErrors()) {
   $_SESSION['errors'] = $validator->getErrors();

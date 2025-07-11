@@ -1,5 +1,12 @@
 {
     "require-dev": {
         "phpunit/phpunit": "^12.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pcopy\\Bbs\\": "bbs/classes/",
+            "Pcopy\\Bbs2\\": "bbs2/classes/",
+            "Pcopy\\Memo\\": "memo/classes/"
+        }
     }
 }
