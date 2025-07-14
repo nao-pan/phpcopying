@@ -8,5 +8,10 @@
             "Pcopy\\Bbs2\\": "bbs2/classes/",
             "Pcopy\\Memo\\": "memo/classes/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
 }
