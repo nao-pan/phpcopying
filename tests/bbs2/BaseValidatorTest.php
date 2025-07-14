@@ -1,18 +1,12 @@
 <?php
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 use Pcopy\Bbs2\Validation\BaseValidator;
 
 #[CoversClass(BaseValidator::class)]
 class BaseValidatorTest extends TestCase
 {
-    #[CoversFunction(BaseValidator::class . '::__construct')]
-    #[CoversFunction(BaseValidator::class . '::validate')]
-    #[CoversFunction(BaseValidator::class . '::required')]
-    #[CoversFunction(BaseValidator::class . '::maxLength')]
-    #[CoversFunction(BaseValidator::class . '::containsForbiddenWords')]
     public function testValidateCollectsAllErrors(): void
     {
         $validator = new DummyValidator(['禁止語']);
@@ -26,7 +20,6 @@ class BaseValidatorTest extends TestCase
         $this->assertTrue($validator->hasErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::required')]
     public function testRequiredAddsErrorWhenValueIsEmpty(): void
     {
         $validator = new DummyValidator([]);
@@ -35,7 +28,6 @@ class BaseValidatorTest extends TestCase
         $this->assertContains('名前は必須項目です。', $validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::required')]
     public function testRequiredAddsErrorWhenValueIsOnlySpaces(): void
     {
         $validator = new DummyValidator([]);
@@ -44,7 +36,6 @@ class BaseValidatorTest extends TestCase
         $this->assertContains('名前は必須項目です。', $validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::required')]
     public function testRequiredWhenValueIsNotEmptyThenSucceeds(): void
     {
         $validator = new DummyValidator([]);
@@ -53,7 +44,6 @@ class BaseValidatorTest extends TestCase
         $this->assertEmpty($validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::maxLength')]
     public function testMaxLengthAllowsValueWithinLimit(): void
     {
         $validator = new DummyValidator([]);
@@ -62,7 +52,6 @@ class BaseValidatorTest extends TestCase
         $this->assertEmpty($validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::maxLength')]
     public function testMaxLengthAddsErrorIfValueExceedsLimit(): void
     {
         $validator = new DummyValidator([]);
@@ -71,7 +60,6 @@ class BaseValidatorTest extends TestCase
         $this->assertContains('名前は4文字以内で入力してください。', $validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::containsForbiddenWords')]
     public function testContainsForbiddenWordsReturnsTrueWhenTextContainsForbiddenWord(): void
     {
         $validator = new DummyValidator(['禁止語1']);
@@ -80,7 +68,6 @@ class BaseValidatorTest extends TestCase
         $this->assertContains('名前に禁止語「禁止語1」が含まれています。', $validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::containsForbiddenWords')]
     public function testContainsForbiddenWordsAddErrorsWhenTextContainsTwoForbiddenWords(): void
     {
         $validator = new DummyValidator(['禁止語1', '禁止語2']);
@@ -90,7 +77,6 @@ class BaseValidatorTest extends TestCase
         $this->assertContains('名前に禁止語「禁止語2」が含まれています。', $validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::containsForbiddenWords')]
     public function testContainsForbiddenWordsPassesWhenTextHasNoMatch(): void
     {
         $validator = new DummyValidator([]);
@@ -99,7 +85,6 @@ class BaseValidatorTest extends TestCase
         $this->assertEmpty($validator->getErrors());
     }
 
-    #[CoversFunction(BaseValidator::class . '::getErrors')]
     public function testGetErrorsReturnsAllCollectedErrors(): void
     {
         $validator = new DummyValidator([]);
@@ -109,7 +94,6 @@ class BaseValidatorTest extends TestCase
         $this->assertCount(1, $errors);
     }
 
-    #[CoversFunction(BaseValidator::class . '::hasErrors')]
     public function testHasErrorsReturnsTrueWhenErrorsExist(): void
     {
         $validator = new DummyValidator([]);
