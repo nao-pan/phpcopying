@@ -28,4 +28,4 @@ jobs:
 
 
       - name: PHPUnit実行
-        run: vendor/bin/phpunit --coverage-text=default --colors=never
+        run: vendor/bin/phpunit --coverage-html coverage/
