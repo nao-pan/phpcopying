@@ -24,4 +24,4 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: PHPUnit実行
-        run: vendor/bin/phpunit --coverage-text --colors=never
+        run: vendor/bin/phpunit --coverage-text=default --colors=never
