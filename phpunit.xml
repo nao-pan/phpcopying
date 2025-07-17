@@ -12,6 +12,7 @@
         failOnPhpunitDeprecation="true"
         failOnRisky="true"
         failOnWarning="true">
+
     <testsuites>
         <testsuite name="default">
             <directory>tests</directory>
@@ -23,4 +24,9 @@
             <directory suffix=".php">bbs2/Classes/</directory>
         </include>
     </source>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">bbs2/Classes/</directory>
+        </include>
+    </coverage>
 </phpunit>
