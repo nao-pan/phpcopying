@@ -21,11 +21,9 @@
     </testsuites>
 
     <coverage>
-        <source>
-            <include>
-                <directory suffix=".php">bbs2/Classes/</directory>
-            </include>
-        </source>
+        <include>
+            <directory suffix=".php">bbs2</directory>
+        </include>
     </coverage>
 
 </phpunit>
