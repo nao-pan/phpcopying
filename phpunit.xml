@@ -20,10 +20,13 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
-        <include>
-            <directory suffix=".php">bbs2</directory>
-        </include>
-    </coverage>
+<coverage>
+  <filter>
+    <include>
+      <directory suffix=".php">bbs2</directory>
+    </include>
+  </filter>
+</coverage>
+
 
 </phpunit>
