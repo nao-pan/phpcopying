@@ -12,12 +12,13 @@ class ForbiddenWordLoaderTest extends TestCase
 
   protected function setUp():void
   {
+    $tempDir = sys_get_temp_dir();
     //テスト用の禁止語ファイルを作成
-    $this->testFilePath = __DIR__ . '/../../common/forbidden_words_test.php';
+    $this->testFilePath = $tempDir . '/forbidden_words_test.php';
     file_put_contents($this->testFilePath, "<?php return ['禁止語1', '禁止語2'];");
 
     //テスト用の配列ではない禁止語ファイルを作成
-    $this->testFilePathAsNotArray = __DIR__ . '/../../common/forbidden_word_not_array_test.php';
+    $this->testFilePathAsNotArray = $tempDir . '/forbidden_word_not_array_test.php';
     file_put_contents($this->testFilePathAsNotArray, "<?php return 'これは文字列です';");
   }
 
