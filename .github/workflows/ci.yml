@@ -23,10 +23,6 @@ jobs:
       - name: Composer依存パッケージインストール
         run: composer install --prefer-dist --no-progress
 
-      - name: Check PHP modules
-        run: php -m
-
-
       - name: PHPUnit実行
         run: |
           mkdir -p coverage
