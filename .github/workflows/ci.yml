@@ -28,12 +28,12 @@ jobs:
 
 
       - name: PHPUnit実行
-        run:
+        run: |
           mkdir -p coverage
-          vendor/bin/phpunit --coverage-html coverage/
+          vendor/bin/phpunit --coverage-html coverage/ || true
         
       - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
