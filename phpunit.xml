@@ -19,11 +19,10 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
-        <include>
+    <filter>
+        <whitelist>
             <directory suffix=".php">bbs2/Classes</directory>
-        </include>
-    </coverage>
-
+        </whitelist>
+    </filter>
 
 </phpunit>
