@@ -5,7 +5,6 @@
     bootstrap="vendor/autoload.php"
     cacheDirectory=".phpunit.cache"
     executionOrder="depends,defects"
-    shortenArraysForExportThreshold="10"
     requireCoverageMetadata="true"
     beStrictAboutCoverageMetadata="false"
     beStrictAboutOutputDuringTests="true"
@@ -20,10 +19,13 @@
         </testsuite>
     </testsuites>
 
+    <filter>
     <coverage>
         <include>
             <directory suffix=".php">bbs2/Classes</directory>
         </include>
     </coverage>
+    </filter>
 
+</phpunit>
 </phpunit>
