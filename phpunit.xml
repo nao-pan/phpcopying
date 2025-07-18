@@ -19,13 +19,11 @@
         </testsuite>
     </testsuites>
 
-    <filter>
     <coverage>
         <include>
             <directory suffix=".php">bbs2/Classes</directory>
         </include>
     </coverage>
-    </filter>
 
-</phpunit>
+
 </phpunit>
